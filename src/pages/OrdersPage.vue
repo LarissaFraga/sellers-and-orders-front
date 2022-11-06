@@ -110,7 +110,6 @@ export default defineComponent({
       this.rows = this.orders;
     },
     filterBySeller() {
-      console.log(this.seller);
       this.rows = this.orders.filter(
         (order) => order.seller === parseInt(this.seller)
       );
@@ -120,8 +119,11 @@ export default defineComponent({
     },
     search() {
       if (this.seller !== '' && this.country !== '') {
-        this.filterBySeller();
-        this.filterByCountry();
+        this.rows = this.orders.filter(
+          (order) =>
+            order.seller === parseInt(this.seller) &&
+            order.country === this.country
+        );
       } else if (this.seller !== '') {
         this.filterBySeller();
       } else if (this.country !== '') {
